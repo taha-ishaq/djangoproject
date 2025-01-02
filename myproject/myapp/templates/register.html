@@ -18,6 +18,7 @@
 
             <form method="POST">
                 {% csrf_token %}
+                {{ form.as_p }}
                 <div class="space-y-4">
                     <div class="flex flex-col">
                         <label for="username" class="text-lg font-medium text-gray-700">Username</label>

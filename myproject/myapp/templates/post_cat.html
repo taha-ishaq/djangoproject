@@ -40,33 +40,7 @@
             
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-
-                <div class="space-y-6">
-
-                    <!-- Cat Name Field -->
-                    <div class="flex flex-col">
-                        <label for="cat_name" class="text-gray-800 font-medium">Cat's Name</label>
-                        <input type="text" name="cat_name" id="cat_name" class="mt-2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" required placeholder="Enter your cat's name">
-                    </div>
-
-                    <!-- Breed Field -->
-                    <div class="flex flex-col">
-                        <label for="breed" class="text-gray-800 font-medium">Breed</label>
-                        <input type="text" name="breed" id="breed" class="mt-2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" required placeholder="Enter your cat's breed">
-                    </div>
-
-                    <!-- Description Field -->
-                    <div class="flex flex-col">
-                        <label for="description" class="text-gray-800 font-medium">Description</label>
-                        <textarea name="description" id="description" class="mt-2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" rows="4" placeholder="Enter a description about your cat"></textarea>
-                    </div>
-
-                    <!-- Image Upload Field -->
-                    <div class="flex flex-col">
-                        <label for="image" class="text-gray-800 font-medium">Upload Cat's Image</label>
-                        <input type="file" name="image" id="image" class="mt-2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                    </div>
-
+                {{ form.as_p }}
                     <!-- Submit Button -->
                     <div class="flex justify-between items-center">
                         <button type="submit" class="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-400 transition duration-200 ease-in-out w-full">

@@ -22,7 +22,7 @@
                 <a href="/post-cat/" class="hover:text-gray-200">Post A Cat!</a>
 
                 {% if user.is_authenticated %}
-                    <span class="text-lg">Welcome, {{ user.username }}!</span>
+                    <span class="text-lg">Welcome! {{ user.username }}!</span>
                     <a href="/logout/" class="hover:text-gray-200">Logout</a>
                 {% else %}
                     <a href="/login/" class="hover:text-gray-200">Login</a>

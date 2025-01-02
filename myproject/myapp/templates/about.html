@@ -6,15 +6,18 @@
     <title>About Us</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <nav class="bg-blue-500 p-4">
+<body class="bg-gray-100 font-sans">
+
+    <!-- Navbar -->
+    <nav class="bg-gradient-to-r from-blue-500 to-teal-500 p-4 shadow-lg">
         <div class="max-w-7xl mx-auto flex justify-between items-center text-white">
-            <div class="text-xl font-semibold">
+            <div class="text-xl font-semibold hover:text-gray-300 transition duration-300">
                 <a href="/">Home</a>
             </div>
             <div class="flex items-center space-x-6">
                 <a href="/" class="hover:text-gray-200">Home Page</a>
                 <a href="/contact/" class="hover:text-gray-200">Contact</a>
+                <a href="/post-cat/" class="hover:text-gray-200">Post A Cat!</a>
 
                 {% if user.is_authenticated %}
                     <span class="text-lg">Welcome, {{ user.username }}!</span>
@@ -27,7 +30,58 @@
         </div>
     </nav>
 
-    <h1>About Us</h1>
-    <p>We are a team of dedicated individuals working on innovative projects.</p>
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto p-8 space-y-8 mt-8">
+        <h1 class="text-4xl font-bold text-center text-gray-800">About Us - The Cat Lovers!</h1>
+        <p class="text-center text-lg text-gray-600">We are a quirky team of dedicated cat lovers who believe in the power of cats to bring joy and creativity to the world. Our mission? To share our love for cats and their hilarious antics with everyone!</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+            <div class="bg-white shadow-lg rounded-lg p-6">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Our Story</h2>
+                <p class="text-gray-700">It all started with a shared love for our feline friends. From watching cat videos on YouTube to adopting our own rescue kitties, we came together to create a community that celebrates everything cats — from their quirky personalities to their soothing purrs!</p>
+            </div>
+            <div class="bg-white shadow-lg rounded-lg p-6">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">What We Do</h2>
+                <p class="text-gray-700">We develop projects, create content, and organize events that connect cat lovers from all over the world. Whether you're a cat owner, a cat meme enthusiast, or just a fan of adorable furballs, we have something for you!</p>
+            </div>
+        </div>
+
+        <div class="mt-12 text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Meet Our Feline Team</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Cat Image 1 -->
+                <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                    <img src="https://cdn2.thecatapi.com/images/b89.jpg" alt="Cat Team Member" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800">Fluffy</h3>
+                        <p class="text-gray-600">Fluffy is the brains behind our catnip research. She loves napping and plotting world domination (through cuteness).</p>
+                    </div>
+                </div>
+
+                <!-- Cat Image 2 -->
+                <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                    <img src="https://cdn2.thecatapi.com/images/bfl.jpg" alt="Cat Team Member" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800">Whiskers</h3>
+                        <p class="text-gray-600">Whiskers is our social media guru. She's a pro at creating viral cat videos and never misses a nap in between posts.</p>
+                    </div>
+                </div>
+
+                <!-- Cat Image 3 -->
+                <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                    <img src="https://cdn2.thecatapi.com/images/b3h.jpg" alt="Cat Team Member" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800">Mittens</h3>
+                        <p class="text-gray-600">Mittens is our resident cuddle expert. She loves to curl up on laps during meetings, bringing purrs of productivity.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="bg-gray-900 text-white py-4 mt-12">
+        <div class="max-w-7xl mx-auto text-center">
+            <p>&copy; 2025 Cat Lover's Paradise. All Rights Reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>

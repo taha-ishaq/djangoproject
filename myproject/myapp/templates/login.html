@@ -4,14 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h2>Login</h2>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-    </form>
-    <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
+<body class="bg-gray-100 font-sans">
+
+    <div class="min-h-screen flex items-center justify-center bg-gray-50">
+        <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+            <div class="text-center mb-6">
+                <img src="https://cdn2.thecatapi.com/images/b3h.jpg" alt="Random Cat" class="w-full rounded-lg mb-4">
+                <h2 class="text-3xl font-semibold text-gray-800 mb-4">Welcome to Cat Land!</h2>
+                <p class="text-lg text-gray-600">Join us to explore a world of fun and feline adventures!</p>
+            </div>
+
+            <form method="POST">
+                {% csrf_token %}
+                <div class="space-y-4">
+                    <div class="flex flex-col">
+                        <label for="username" class="text-lg font-medium text-gray-700">Username</label>
+                        <input type="text" name="username" id="username" class="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    <div class="flex flex-col">
+                        <label for="password" class="text-lg font-medium text-gray-700">Password</label>
+                        <input type="password" name="password" id="password" class="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-500 transition duration-300">Login</button>
+                    </div>
+                </div>
+            </form>
+
+            <p class="mt-4 text-center text-gray-600">Don't have an account? <a href="{% url 'register' %}" class="text-blue-600 hover:underline">Register here</a></p>
+        </div>
+    </div>
+
 </body>
 </html>

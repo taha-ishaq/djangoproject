@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post About Your Cat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Navbar -->
+    <nav class="bg-blue-500 p-4 shadow-md">
+        <div class="max-w-7xl mx-auto flex justify-between items-center text-white">
+            <div class="text-xl font-semibold">
+                <a href="/">Home</a>
+            </div>
+            <div class="flex items-center space-x-6">
+                <a href="/" class="hover:text-gray-200">Home Page</a>
+                <a href="/about/" class="hover:text-gray-200">About</a>
+                <a href="/contact/" class="hover:text-gray-200">Contact</a>
+
+                {% if user.is_authenticated %}
+                    <span class="text-lg">Welcome, {{ user.username }}!</span>
+                    <a href="/logout/" class="hover:text-gray-200">Logout</a>
+                {% else %}
+                    <a href="/login/" class="hover:text-gray-200">Login</a>
+                    <a href="/register/" class="hover:text-gray-200">Register</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <div class="max-w-7xl mx-auto p-8">
+        <h1 class="text-4xl font-bold text-center text-gray-900 mb-8">Post About Your Cat</h1>
+
+        <div class="mt-8 max-w-lg mx-auto bg-white shadow-lg rounded-lg p-6">
+            <h2 class="text-2xl font-semibold text-center text-gray-800 mb-4">We'd love to hear about your cat!</h2>
+            <p class="text-gray-600 text-center mb-6">Fill out the form below to share your cat's details with the world.</p>
+            
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="space-y-6">
+
+                    <!-- Cat Name Field -->
+                    <div class="flex flex-col">
+                        <label for="cat_name" class="text-gray-800 font-medium">Cat's Name</label>
+                        <input type="text" name="cat_name" id="cat_name" class="mt-2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" required placeholder="Enter your cat's name">
+                    </div>
+
+                    <!-- Breed Field -->
+                    <div class="flex flex-col">
+                        <label for="breed" class="text-gray-800 font-medium">Breed</label>
+                        <input type="text" name="breed" id="breed" class="mt-2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" required placeholder="Enter your cat's breed">
+                    </div>
+
+                    <!-- Description Field -->
+                    <div class="flex flex-col">
+                        <label for="description" class="text-gray-800 font-medium">Description</label>
+                        <textarea name="description" id="description" class="mt-2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" rows="4" placeholder="Enter a description about your cat"></textarea>
+                    </div>
+
+                    <!-- Image Upload Field -->
+                    <div class="flex flex-col">
+                        <label for="image" class="text-gray-800 font-medium">Upload Cat's Image</label>
+                        <input type="file" name="image" id="image" class="mt-2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="flex justify-between items-center">
+                        <button type="submit" class="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-400 transition duration-200 ease-in-out w-full">
+                            Post My Cat
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-4 mt-12">
+        <div class="max-w-7xl mx-auto text-center">
+            <p>&copy; 2025 Cat Lover's Paradise. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

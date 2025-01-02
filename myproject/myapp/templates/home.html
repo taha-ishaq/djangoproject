@@ -6,18 +6,20 @@
     <title>Home Page</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 font-sans">
 
     <!-- Navbar -->
-    <nav class="bg-blue-500 p-4">
+    <nav class="bg-gradient-to-r from-blue-500 to-teal-500 p-4 shadow-lg">
         <div class="max-w-7xl mx-auto flex justify-between items-center text-white">
-            <div class="text-xl font-semibold">
+            <div class="text-xl font-semibold hover:text-gray-300 transition duration-300">
                 <a href="/">Home</a>
             </div>
             <div class="flex items-center space-x-6">
                 <a href="/about/" class="hover:text-gray-200">About</a>
                 <a href="/contact/" class="hover:text-gray-200">Contact</a>
+                <a href="/post-cat/" class="hover:text-gray-200">Post A Cat!</a>
 
                 {% if user.is_authenticated %}
                     <span class="text-lg">Welcome, {{ user.username }}!</span>
@@ -31,10 +33,61 @@
     </nav>
 
     <!-- Main content -->
-    <div class="max-w-7xl mx-auto p-8">
-        <h1 class="text-3xl font-bold text-center">Welcome to the Home Page!</h1>
-        <p class="mt-4 text-center">This is the main page of the website.</p>
+    <div class="max-w-7xl mx-auto p-8 space-y-8">
+        <h1 class="text-4xl font-bold text-center text-gray-800">Welcome to the Home Page!</h1>
+        <p class="text-center text-lg text-gray-600">Explore amazing cat facts and posts shared by cat lovers like you!</p>
+
+        <!-- Cat Facts Section -->
+        <div id="cat-facts-container" class="mt-8 max-w-lg mx-auto">
+            <div id="cat-fact-card" class="bg-white shadow-lg rounded-lg p-6 mb-4 transition-transform transform hover:scale-105">
+                <p id="cat-fact" class="text-lg text-gray-800">Loading cat fact...</p>
+            </div>
+            <button id="get-another-fact" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-500 w-full transition-all duration-300 transform hover:scale-105">
+                Show Another Cat Fact
+            </button>
+        </div>
+
+        <!-- Cat Posts Section -->
+        <div id="cat-posts-container" class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <h2 class="text-3xl font-semibold text-center text-gray-800 mb-6">Cat Posts</h2>
+            {% for post in cat_posts %}
+                <div class="bg-white shadow-xl rounded-lg overflow-hidden transform hover:scale-105 transition-all duration-300">
+                    <img src="{{ post.image.url }}" alt="{{ post.cat_name }}" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800">{{ post.cat_name }} ({{ post.pet_name }})</h3>
+                        <p class="text-gray-700 mt-2"><strong>Breed:</strong> {{ post.breed }}</p>
+                        <p class="text-gray-700 mt-2"><strong>Description:</strong> {{ post.description }}</p>
+                        <p class="text-gray-600 mt-4">Posted by: <strong>{{ post.user.username }}</strong></p>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="text-center text-gray-500">No cat posts available.</p>
+            {% endfor %}
+        </div>
     </div>
 
+    <!-- JavaScript to Fetch Cat Facts -->
+    <script>
+        // Function to fetch a cat fact
+        function fetchCatFact() {
+            $.get("https://catfact.ninja/fact", function(data) {
+                document.getElementById('cat-fact').innerText = data.fact;
+            });
+        }
+
+        // Initial call to fetch a cat fact
+        fetchCatFact();
+
+        // Event listener for button to fetch a new cat fact
+        document.getElementById('get-another-fact').addEventListener('click', function() {
+            fetchCatFact();
+        });
+    </script>
+
+    <footer class="bg-gray-900 text-white py-4 mt-12">
+        <div class="max-w-7xl mx-auto text-center">
+            <p>&copy; 2025 Cat Lover's Paradise. All Rights Reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <nav class="bg-blue-500 p-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center text-white">
+            <div class="text-xl font-semibold">
+                <a href="/">Home</a>
+            </div>
+            <div class="flex items-center space-x-6">
+                <a href="/" class="hover:text-gray-200">Home Page</a>
+                <a href="/contact/" class="hover:text-gray-200">Contact</a>
+
+                {% if user.is_authenticated %}
+                    <span class="text-lg">Welcome, {{ user.username }}!</span>
+                    <a href="/logout/" class="hover:text-gray-200">Logout</a>
+                {% else %}
+                    <a href="/login/" class="hover:text-gray-200">Login</a>
+                    <a href="/register/" class="hover:text-gray-200">Register</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <h1>About Us</h1>
+    <p>We are a team of dedicated individuals working on innovative projects.</p>
+</body>
+</html>
